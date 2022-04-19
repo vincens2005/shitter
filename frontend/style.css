@@ -1,0 +1,39 @@
+* {
+	scrollbar-width: thin;
+}
+#navigation {
+	position: sticky;	
+}
+
+.shit {
+	padding: calc(var(--block-spacing-vertical) / 3) calc(var(--block-spacing-horizontal) / 3);
+	margin: 10px;
+}
+
+.shits {
+	overflow-y: scroll;
+	overflow-x: visible;
+	transition: 0.15s;
+	padding: 2px;
+	padding-bottom: 40px;
+}
+
+@media (min-width: 900px) {
+	.shits {
+		height: calc(100vh - 50px);
+	}
+	
+	.mainlayout {
+		grid-template-columns: 1fr 3fr;
+	}
+}
+
+@media (max-width: 900px) {
+	.shits {
+		scrollbar-color: transparent transparent;
+	}
+}
+
+.mainlayout {
+	padding: 2vw 3vw;
+}
