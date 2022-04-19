@@ -10,8 +10,9 @@
 		<script src="https://cdn.jsdelivr.net/npm/gun/gun.js"></script>
 		<script src="https://cdn.jsdelivr.net/npm/gun/sea.js"></script>
 		<script src="https://cdn.jsdelivr.net/npm/gun/lib/then.js"></script>
-		<script src="page_scripts/login.js"></script>
+		<script src="page_scripts/home.js"></script>
 		<script src="utilities/gun.js"></script>
+		<script src="utilities/common.js"></script>
 		<link rel="stylesheet" href="style.css"/>
 	</head>
 	<body>
@@ -25,156 +26,170 @@
 				</div>
 			</article>
 			<div class="shits">
-				<article class="shit">
-					This is a shit
-				</article>
-				<article class="shit">
-					This is a shit
-				</article><article class="shit">
-					This is a shit
-				</article><article class="shit">
-					This is a shit
-				</article><article class="shit">
-					This is a shit
-				</article><article class="shit">
-					This is a shit
-				</article><article class="shit">
-					This is a shit
-				</article><article class="shit">
-					This is a shit
-				</article><article class="shit">
-					This is a shit
-				</article><article class="shit">
-					This is a shit
-				</article><article class="shit">
-					This is a shit
-				</article><article class="shit">
-					This is a shit
-				</article><article class="shit">
-					This is a shit
-				</article><article class="shit">
-					This is a shit
-				</article><article class="shit">
-					This is a shit
-				</article><article class="shit">
-					This is a shit
-				</article><article class="shit">
-					This is a shit
-				</article><article class="shit">
-					This is a shit
-				</article><article class="shit">
-					This is a shit
-				</article><article class="shit">
-					This is a shit
-				</article><article class="shit">
-					This is a shit
-				</article><article class="shit">
-					This is a shit
-				</article><article class="shit">
-					This is a shit
-				</article><article class="shit">
-					This is a shit
-				</article><article class="shit">
-					This is a shit
-				</article><article class="shit">
-					This is a shit
-				</article><article class="shit">
-					This is a shit
-				</article><article class="shit">
-					This is a shit
-				</article><article class="shit">
-					This is a shit
-				</article><article class="shit">
-					This is a shit
-				</article><article class="shit">
-					This is a shit
-				</article><article class="shit">
-					This is a shit
-				</article><article class="shit">
-					This is a shit
-				</article><article class="shit">
-					This is a shit
-				</article><article class="shit">
-					This is a shit
-				</article><article class="shit">
-					This is a shit
-				</article><article class="shit">
-					This is a shit
-				</article><article class="shit">
-					This is a shit
-				</article><article class="shit">
-					This is a shit
-				</article><article class="shit">
-					This is a shit
-				</article><article class="shit">
-					This is a shit
-				</article><article class="shit">
-					This is a shit
-				</article><article class="shit">
-					This is a shit
-				</article><article class="shit">
-					This is a shit
-				</article><article class="shit">
-					This is a shit
-				</article><article class="shit">
-					This is a shit
-				</article><article class="shit">
-					This is a shit
-				</article><article class="shit">
-					This is a shit
-				</article><article class="shit">
-					This is a shit
-				</article><article class="shit">
-					This is a shit
-				</article><article class="shit">
-					This is a shit
-				</article><article class="shit">
-					This is a shit
-				</article><article class="shit">
-					This is a shit
-				</article><article class="shit">
-					This is a shit
-				</article><article class="shit">
-					This is a shit
-				</article><article class="shit">
-					This is a shit
-				</article><article class="shit">
-					This is a shit
-				</article><article class="shit">
-					This is a shit
-				</article><article class="shit">
-					This is a shit
-				</article><article class="shit">
-					This is a shit
-				</article><article class="shit">
-					This is a shit
-				</article><article class="shit">
-					This is a shit
-				</article><article class="shit">
-					This is a shit
-				</article><article class="shit">
-					This is a shit
-				</article><article class="shit">
-					This is a shit
-				</article><article class="shit">
-					This is a shit
-				</article><article class="shit">
-					This is a shit
-				</article><article class="shit">
-					This is a shit
-				</article><article class="shit">
-					This is a shit
-				</article><article class="shit">
-					This is a shit
-				</article><article class="shit">
-					This is a shit
-				</article><article class="shit">
-					This is a shit
-				</article><article class="shit">
-					This is a shit
-				</article><article class="shit">
-					This is a shit
-				</article>
+				<div id="shitbox">
+					<article>
+						<form onsubmit="shit(); return false;">
+							<div class="grid">
+								<input type="text" autocomplete="off" placeholder="Scream into the void" id="shit-text">
+								<button type="submit" role="button">
+									Shit
+								</button>
+							</div>
+						</form>
+					</article>
+				</div>
+				<div id="shits">
+					<article class="shit">
+						This is a shit
+					</article>
+					<article class="shit">
+						This is a shit
+					</article><article class="shit">
+						This is a shit
+					</article><article class="shit">
+						This is a shit
+					</article><article class="shit">
+						This is a shit
+					</article><article class="shit">
+						This is a shit
+					</article><article class="shit">
+						This is a shit
+					</article><article class="shit">
+						This is a shit
+					</article><article class="shit">
+						This is a shit
+					</article><article class="shit">
+						This is a shit
+					</article><article class="shit">
+						This is a shit
+					</article><article class="shit">
+						This is a shit
+					</article><article class="shit">
+						This is a shit
+					</article><article class="shit">
+						This is a shit
+					</article><article class="shit">
+						This is a shit
+					</article><article class="shit">
+						This is a shit
+					</article><article class="shit">
+						This is a shit
+					</article><article class="shit">
+						This is a shit
+					</article><article class="shit">
+						This is a shit
+					</article><article class="shit">
+						This is a shit
+					</article><article class="shit">
+						This is a shit
+					</article><article class="shit">
+						This is a shit
+					</article><article class="shit">
+						This is a shit
+					</article><article class="shit">
+						This is a shit
+					</article><article class="shit">
+						This is a shit
+					</article><article class="shit">
+						This is a shit
+					</article><article class="shit">
+						This is a shit
+					</article><article class="shit">
+						This is a shit
+					</article><article class="shit">
+						This is a shit
+					</article><article class="shit">
+						This is a shit
+					</article><article class="shit">
+						This is a shit
+					</article><article class="shit">
+						This is a shit
+					</article><article class="shit">
+						This is a shit
+					</article><article class="shit">
+						This is a shit
+					</article><article class="shit">
+						This is a shit
+					</article><article class="shit">
+						This is a shit
+					</article><article class="shit">
+						This is a shit
+					</article><article class="shit">
+						This is a shit
+					</article><article class="shit">
+						This is a shit
+					</article><article class="shit">
+						This is a shit
+					</article><article class="shit">
+						This is a shit
+					</article><article class="shit">
+						This is a shit
+					</article><article class="shit">
+						This is a shit
+					</article><article class="shit">
+						This is a shit
+					</article><article class="shit">
+						This is a shit
+					</article><article class="shit">
+						This is a shit
+					</article><article class="shit">
+						This is a shit
+					</article><article class="shit">
+						This is a shit
+					</article><article class="shit">
+						This is a shit
+					</article><article class="shit">
+						This is a shit
+					</article><article class="shit">
+						This is a shit
+					</article><article class="shit">
+						This is a shit
+					</article><article class="shit">
+						This is a shit
+					</article><article class="shit">
+						This is a shit
+					</article><article class="shit">
+						This is a shit
+					</article><article class="shit">
+						This is a shit
+					</article><article class="shit">
+						This is a shit
+					</article><article class="shit">
+						This is a shit
+					</article><article class="shit">
+						This is a shit
+					</article><article class="shit">
+						This is a shit
+					</article><article class="shit">
+						This is a shit
+					</article><article class="shit">
+						This is a shit
+					</article><article class="shit">
+						This is a shit
+					</article><article class="shit">
+						This is a shit
+					</article><article class="shit">
+						This is a shit
+					</article><article class="shit">
+						This is a shit
+					</article><article class="shit">
+						This is a shit
+					</article><article class="shit">
+						This is a shit
+					</article><article class="shit">
+						This is a shit
+					</article><article class="shit">
+						This is a shit
+					</article><article class="shit">
+						This is a shit
+					</article><article class="shit">
+						This is a shit
+					</article><article class="shit">
+						This is a shit
+					</article><article class="shit">
+						This is a shit
+					</article>
+				</div>
 			</div>
 		</div>
 

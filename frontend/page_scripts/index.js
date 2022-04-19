@@ -9,7 +9,8 @@ window.addEventListener("DOMContentLoaded", () => {
 			"Decentralized, like a sewer",
 			"Blogging the size of my penis: micro",
 			"Hop in! The water's fine",
-			"Like if the blue bird took a shit on your winshield"
+			"Like if the blue bird took a shit on your winshield",
+			"Cancel culture just got ten times better"
 		],
 		typeSpeed: 85,
 		backSpeed: 45,

@@ -18,6 +18,15 @@
 	padding-bottom: 40px;
 }
 
+#shits {
+	padding: 0 20px;
+}
+
+#shitbox input, #shitbox button, #shitbox form {
+	margin: 0;
+}
+
+
 @media (min-width: 900px) {
 	.shits {
 		height: calc(100vh - 50px);
@@ -26,11 +35,43 @@
 	.mainlayout {
 		grid-template-columns: 1fr 3fr;
 	}
+	
+	#shitbox {
+		position: sticky;
+		top: 0;
+	}
+	
+	#shitbox button {
+		display: none;
+	}
+	
+	#shitbox > article {
+		padding: 6px;
+	}
 }
 
 @media (max-width: 900px) {
 	.shits {
 		scrollbar-color: transparent transparent;
+	}
+	
+	#shitbox {
+		position: fixed;
+		bottom: 0;
+		left: 50%;
+		transform: translateX(-50%);
+		width: 95vw;
+	}
+	
+	#shitbox > article {
+		margin: 0;
+		padding: 5px;
+	}
+	
+		#shitbox .grid {
+		grid-template-columns: 3fr 1fr;
+		margin: 3px;
+		gap: 8px;
 	}
 }
 
