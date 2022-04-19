@@ -5,6 +5,7 @@ window.addEventListener("DOMContentLoaded", () => {
 	wiatal("#tagline", {
 		strings: [
 			"The best place for your mental diarrhea",
+			"Censorship is shit, just like your opinions",
 			"Decentralized, just like a sewer",
 			"Blogging the size of my penis: micro",
 			"Hop in! The water's fine",

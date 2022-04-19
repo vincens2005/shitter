@@ -1,0 +1,36 @@
+<!doctype html>
+<html>
+	<head>
+		<title>
+			Sign Up - Shitter
+		</title>
+		<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@picocss/pico@latest/css/pico.min.css">
+		<meta name="viewport" content="width=device-width, initial-scale=1, height=device-height" />
+		<script src="https://cdn.jsdelivr.net/gh/vincens2005/wiatal/index.min.js"></script>
+		<script src="https://cdn.jsdelivr.net/npm/gun/gun.js"></script>
+		<script src="https://cdn.jsdelivr.net/npm/gun/sea.js"></script>
+		<script src="page_scripts/signup.js"></script>
+		<script src="utilities/gun.js"></script>
+	</head>
+	<body>
+		<main class="container">
+			<article>
+				<form onsubmit="signup(); return false;">
+					<hgroup>
+						<h2>
+							Sign up for Shitter
+						</h2>
+						<h3 id="error">
+							<!-- error will be put here if signup fails -->
+						</h3>
+					</hgroup>
+					<input id="username" placeholder="username" name="username" autocomplete="username" label="username" type="text" />
+					<input id="password" type="password" placeholder="password" name="password" autocomplete="current-password" label="password" />
+					<button type="submit" id="loginbutton">
+						Sign Up
+					</button>
+				</form>
+			</article>
+		</main>
+	</body>
+</html>
