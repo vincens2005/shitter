@@ -30,3 +30,8 @@ async function get_user_info(id) {
 	}
 	return info;
 }
+
+async function get_shit_data(shit) {
+	let author = await shit.get("author").then();
+	return SEA.verify(shit.signed_data, author.pub);
+}

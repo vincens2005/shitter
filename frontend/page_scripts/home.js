@@ -17,6 +17,23 @@ async function shit() {
 	// TODO: actual shitting
 	let shit_text = document.querySelector("#shit-text").value;
 	if (!shit_text || !user.is) return;
+	
+	let uniqueid = Math.floor(Math.random() * Date.now())
+	let shit_data = {
+		embedimg: null, // TODO: embedding
+		embedvideo: null,
+		embedurl: null,
+		text: shit_text
+	};
+	
+	let signed_data = await SEA.sign(shit_data, user.pair())
+	
+	let shit = gun.get("shit/" + uniqueid).put({signed_data});
+	
+	shit.get("author").put(user).get("shits").set(shit);
+	
+	gun.get("shitter_shits").set(shit);
+	
 	document.querySelector("#shit-text").value = "";
 	randomize_placeholder();
 }

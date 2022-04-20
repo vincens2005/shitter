@@ -30,9 +30,9 @@ function signup() {
 			console.log("logged in!");
 			
 			user.get("name").put(username, a => {
-				gun.get("shitter_usersv3").set({
+				gun.get(user_db).set({
 					username,
-					id: user.is.alias
+					id: user.is.pub
 				}, () => {
 					console.log("user added to directory");
 					doneworking();
