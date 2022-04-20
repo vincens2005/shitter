@@ -15,11 +15,18 @@ function randomize_placeholder() {
 
 async function shit() {
 	// TODO: actual shitting
+	let shit_text = document.querySelector("#shit-text").value;
+	if (!shit_text || !user.is) return;
 	document.querySelector("#shit-text").value = "";
 	randomize_placeholder();
 }
 
 function init() {
+	if (!user.is) {
+		document.querySelector("#shitform").classList.add("hidden");
+		document.querySelector("#loginthing").classList.remove("hidden");
+		return;
+	}
 	randomize_placeholder();
 }
 

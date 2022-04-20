@@ -26,6 +26,10 @@
 	margin: 0;
 }
 
+.hidden {
+	display: none;
+}
+
 .shit-user {
 	display: flex;
 	align-items: center;
@@ -45,9 +49,21 @@
 	margin: 10px;
 }
 
+#home-login {
+	align-items: center;
+	padding: 2vw;
+}
 
+#home-login * {
+	padding: 3px;
+	margin: 0;
+}
 
 @media (min-width: 900px) {
+	#home-login {
+		grid-template-columns: 10fr 2fr 1fr !important;
+	}
+	
 	.shits {
 		height: calc(100vh - 50px);
 	}
@@ -71,6 +87,10 @@
 }
 
 @media (max-width: 900px) {
+	#home-login {
+		grid-template-columns: 3fr 2fr 1fr !important;
+	}
+	
 	.shits {
 		scrollbar-color: transparent transparent;
 	}
