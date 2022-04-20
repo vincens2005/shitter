@@ -1,22 +1,26 @@
 {{#shits}}
-	<article class="shit">
-		<a class="shit-user" href="profile?user={{username}}">
-			<img src="{{profile_pic}}" class="pfp" />
-			<span>
-				{{username}}
-			</span>
-		</a>
-		<div>
-			{{text}}
-			{{#if embedimg}}
-				<img class="embed" src="{{embedurl}}" />
-			{{/if}}
-			{{#if embedvideo}}
-				<video class="embed" controls>
-					HTML vido is unsupported? wtf is wrong with you, update your browser
-					<source src="{{embedurl}}">
-				</video>
-			{{/if}}
-		</div>
-	</article>
+	{{#if text}}
+		{{#if username}}
+			<article class="shit">
+				<a class="shit-user" href="profile?user={{username}}">
+					<img src="{{profile_pic}}" class="pfp" />
+					<span>
+						{{username}}
+					</span>
+				</a>
+				<div>
+					{{text}}
+					{{#if embedimg}}
+						<img class="embed" src="{{embedurl}}" />
+					{{/if}}
+					{{#if embedvideo}}
+						<video class="embed" controls>
+							HTML vido is unsupported? wtf is wrong with you, update your browser
+							<source src="{{embedurl}}">
+						</video>
+					{{/if}}
+				</div>
+			</article>
+		{{/if}}
+	{{/if}}
 {{/shits}}
