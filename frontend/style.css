@@ -26,6 +26,26 @@
 	margin: 0;
 }
 
+.shit-user {
+	display: flex;
+	align-items: center;
+	justify-content: flex-start;
+	margin-bottom: 5px;
+}
+
+.pfp {
+	object-fit: cover;
+	width: 55px;
+	height: 55px;
+	border-radius: 100%;
+	float: left;
+}
+
+.shit-user span {
+	margin: 10px;
+}
+
+
 
 @media (min-width: 900px) {
 	.shits {

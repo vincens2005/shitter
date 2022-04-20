@@ -1,13 +1,15 @@
 function randomize_placeholder() {
 	document.querySelector("#shit-text").setAttribute("placeholder", randarr([
-		"What's poppin'?",
+		"What's poopin'?",
 		"Scream into the void",
 		"Take your dump",
 		"Who's bad?",
 		"Cancel someone",
-		"Make me proud",
-		"SPEW",
-		"Empty your bowels"
+		"Make JK Rowling proud",
+		"Put your bad takes here",
+		"Empty your bowels",
+		"What's in your ass?",
+		"Show the world how based you are"
 	]));
 }
 
