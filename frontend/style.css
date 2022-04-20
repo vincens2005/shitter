@@ -1,6 +1,19 @@
 * {
 	scrollbar-width: thin;
 }
+
+*::-webkit-scrollbar {
+	width: 5px;
+	display: block;
+	background: var(--muted-border-color);
+}
+
+
+*::-webkit-scrollbar-thumb {
+	border-radius: 2px;
+	background: var(--primary);
+}
+
 #navigation {
 	position: sticky;	
 }
@@ -70,6 +83,11 @@
 	
 	.mainlayout {
 		grid-template-columns: 1fr 3fr;
+		overflow-y: hidden;
+	}
+	
+	body {
+		overflow-y: hidden;
 	}
 	
 	#shitbox {
@@ -95,6 +113,10 @@
 		scrollbar-color: transparent transparent;
 	}
 	
+	.shits::-webkit-scrollbar {
+		display: none;
+	}
+	
 	#shitbox {
 		position: fixed;
 		bottom: 0;
@@ -108,7 +130,7 @@
 		padding: 5px;
 	}
 	
-		#shitbox .grid {
+	#shitbox .grid {
 		grid-template-columns: 3fr 1fr;
 		margin: 3px;
 		gap: 8px;

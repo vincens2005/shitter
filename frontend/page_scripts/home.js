@@ -25,7 +25,6 @@ function init() {
 	if (!user.is) {
 		document.querySelector("#shitform").classList.add("hidden");
 		document.querySelector("#loginthing").classList.remove("hidden");
-		return;
 	}
 	randomize_placeholder();
 }
