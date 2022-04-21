@@ -30,6 +30,10 @@ async function login() {
 		if (!userobject) {
 			console.log("user not in directory??");
 			await gun.get(user_db + "/" + username).put({user}).then();
+			console.log("profile remade");
+			setTimeout(() => {
+				location = "home.html";
+			}, 1000);
 			gun.get(user_db).set(user, () => {
 				console.log("user added to directory");
 				doneworking();

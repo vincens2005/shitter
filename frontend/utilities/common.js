@@ -50,8 +50,29 @@ async function get_shit_data(shit) {
 	if (!shit_data) return null;
 	
 	let user_info = await get_user_info({id});
+	
+	if (shit_data.reshitting) shit_data.quote_shit = await get_shit_data(await gun.get("shit/" + shit_data.reshitting).then());
 		
 	return {...shit_data, ...user_info};
+}
+
+async function create_shit({embedimg, embedvideo, embedurl, reshitting, replying, text}) {
+	let uniqueid = Math.floor(Math.random() * Date.now());
+	
+	let shit_data = {embedimg, embedvideo, embedurl, reshitting, replying, text, uniqueid};
+	
+	let signed_data = await SEA.sign(shit_data, user.pair())
+	
+	let shit = gun.get("shit/" + uniqueid).put({signed_data});
+	
+	shit.get("author").put(user).get("shitsv" + shitter_version).set(shit);
+	
+	if (replying) {
+		let reply_to = await gun.get("shit/" + replying).then();
+		reply_to.get("replies").set(shit);
+		return;
+	}
+	gun.get(shits_db).set(shit);	
 }
 
 /** automatically fills out handlebars template
@@ -95,3 +116,23 @@ function prefetchtemplates(urls) {
 		}
 	});
 }
+
+
+/** removes html from text
+	* @param {String} html - the html to clean
+*/
+function htmltotext(html) {
+	let el = document.createElement("span");
+	el.innerHTML = html;
+	text = el.innerText;
+	text = text.replace(/</g, "&lt;");
+	text = text.replace(/>/g, "&gt;");
+	return text;
+}
+
+window.addEventListener("DOMContentLoaded", () => {
+	Handlebars.registerHelper("def", options => {
+		Handlebars.registerPartial(options.hash.name, options.fn());
+		return;
+	});
+});

@@ -1,4 +1,5 @@
-json = JSON;
+let working = false;
+let autolink_options = {target: "_blank", onclick: "event.stopPropagation();"};
 function randomize_placeholder() {
 	document.querySelector("#shit-text").setAttribute("placeholder", randarr([
 		"What's poopin'?",
@@ -15,29 +16,26 @@ function randomize_placeholder() {
 }
 
 async function shit() {
-	// TODO: actual shitting
 	let shit_text = document.querySelector("#shit-text").value;
-	if (!shit_text || !user.is) return;
+	if (!shit_text || !user.is || working) return;
+	working = true;
+	document.querySelector("#shitbutton").classList.toggle("secondary");
 	
-	let uniqueid = Math.floor(Math.random() * Date.now())
 	let shit_data = {
 		embedimg: null, // TODO: embedding
 		embedvideo: null,
 		embedurl: null,
 		text: shit_text.slice(0, 28000),
-		uniqueid
 	};
 	
-	let signed_data = await SEA.sign(shit_data, user.pair())
-	
-	let shit = gun.get("shit/" + uniqueid).put({signed_data});
-	
-	shit.get("author").put(user).get("shitsv" + shitter_version).set(shit);
-	
-	gun.get(shits_db).set(shit);
+	await create_shit(shit_data);
 	
 	document.querySelector("#shit-text").value = "";
 	randomize_placeholder();
+	setTimeout(() => {
+		working = false;
+		document.querySelector("#shitbutton").classList.toggle("secondary");
+	}, 2000);
 }
 
 async function init() {
@@ -51,19 +49,13 @@ async function init() {
 	
 	let shits = document.querySelector("#shits");
 	let shit_ids = [];
-	await gun.get(shits_db).map({
-		".": {
-			">": {
-				signed_data: Date.now()
-			}
-		},
-		"-": 1
-	}).on(async shit => {
+	await gun.get(shits_db).map().on(async shit => {
 		if (!shit) return;
 		console.log(shit)
 		shit = await get_shit_data(shit);
 		if (!shit || shit_ids.includes(shit.uniqueid)) return;
 		shit.text = shit.text.length > 200 ? shit.text.slice(0, 200) + "..." : shit.text;
+		shit.text = htmltotext(shit.text).autoLink();
 		handlebardata = {shits: [shit]};
 		let shit_el = await fill_template("templates/shits.hbs", handlebardata);
 		if (!shit_el) return;

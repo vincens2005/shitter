@@ -23,6 +23,11 @@
 	margin: 10px;
 }
 
+.shit small {
+	color: var(--secondary);
+	transform: translateY(-50%);
+}
+
 .shits {
 	overflow-y: scroll;
 	overflow-x: visible;
@@ -68,10 +73,6 @@
 	padding: 2vw;
 }
 
-#home-login * {
-	padding: 3px;
-	margin: 0;
-}
 
 @media (min-width: 900px) {
 	#home-login {
@@ -124,6 +125,7 @@
 		left: 50%;
 		transform: translateX(-50%);
 		width: 95vw;
+		align-items: center;
 	}
 	
 	#shitbox > article {
@@ -135,6 +137,14 @@
 		grid-template-columns: 3fr 1fr;
 		margin: 3px;
 		gap: 8px;
+	}
+	
+	#shitbox input {
+		height: calc(1rem * var(--line-height) / 2 + var(--form-element-spacing-vertical) + var(--border-width) + 6px);
+	}
+	
+	#shitbox button {
+		padding: 3px;
 	}
 }
 
