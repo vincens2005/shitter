@@ -32,7 +32,7 @@ async function shit() {
 	
 	let shit = gun.get("shit/" + uniqueid).put({signed_data});
 	
-	shit.get("author").put(user).get("shits").set(shit);
+	shit.get("author").put(user).get("shitsv" + shitter_version).set(shit);
 	
 	gun.get(shits_db).set(shit);
 	
@@ -51,9 +51,16 @@ async function init() {
 	
 	let shits = document.querySelector("#shits");
 	let shit_ids = [];
-	await gun.get(shits_db).map(/*TODO: filter and stuff*/).on(async shit => {
+	await gun.get(shits_db).map({
+		".": {
+			">": {
+				signed_data: Date.now()
+			}
+		},
+		"-": 1
+	}).on(async shit => {
 		if (!shit) return;
-
+		console.log(shit)
 		shit = await get_shit_data(shit);
 		if (!shit || shit_ids.includes(shit.uniqueid)) return;
 		shit.text = shit.text.length > 200 ? shit.text.slice(0, 200) + "..." : shit.text;

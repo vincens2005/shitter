@@ -1,4 +1,4 @@
 // TODO: yeah do this
-user = await gun.get(user_db).map(u => u.username == "MrGay42069" ? u : undefined).then()
+user = await gun.get("shitter_users/" + username);
 
 realuser = await gun.user(user.id).then()

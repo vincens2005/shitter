@@ -13,10 +13,15 @@ function randarr(array) {
 	return array[randint(0, array.length)];
 }
 
-async function get_user_info(id) {
+async function get_user_info({id, username}) {
+	if (gotten_users[id || username]) return gotten_users[id || username];
+	if (!id && username) {
+		id = (await gun.get(user_db + "/" + username).then()).user["#"].replace("~","");
+	}
 	if (gotten_users[id]) return gotten_users[id];
+	
 	let user = gun.user(id);
-	let username = await user.get("name").then();
+	if (!username) username = await user.get("name").then();
 	let user_profile = await user.get("profile_info").then();
 	let default_info = {
 		profile_pic: "images/pfp.jpg",
@@ -44,7 +49,7 @@ async function get_shit_data(shit) {
 	
 	if (!shit_data) return null;
 	
-	let user_info = await get_user_info(id);
+	let user_info = await get_user_info({id});
 		
 	return {...shit_data, ...user_info};
 }

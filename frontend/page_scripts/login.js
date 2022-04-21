@@ -25,14 +25,12 @@ async function login() {
 		}
 		
 		console.log("big work!!!!");
-		let userobject = await gun.get(user_db).map(u => u.username == username ? u : undefined).then();
+		let userobject = await gun.get(user_db + "/" + username).then();
 		
 		if (!userobject) {
 			console.log("user not in directory??");
-			gun.get(user_db).set({
-					username,
-					id: user.is.alias
-			}, () => {
+			await gun.get(user_db + "/" + username).put({user}).then();
+			gun.get(user_db).set(user, () => {
 				console.log("user added to directory");
 				doneworking();
 				location = "home.html";
@@ -41,8 +39,7 @@ async function login() {
 		else {
 			doneworking();
 			location = "home.html";
-		}
-		
+		}		
 	});
 }
 

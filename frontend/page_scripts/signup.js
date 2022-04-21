@@ -1,5 +1,5 @@
 let working = false;
-function signup() {
+async function signup() {
 	if (working) return;
 	let username = document.querySelector("#username").value;
 	let password = document.querySelector("#password").value;
@@ -26,18 +26,16 @@ function signup() {
 		
 		console.log("made user!");
 		
-		user.auth(username, password, u => { // callbacks, ugh
+		user.auth(username, password, async () => { // callbacks, ugh
 			console.log("logged in!");
 			
-			user.get("name").put(username, a => {
-				gun.get(user_db).set({
-					username,
-					id: user.is.pub
-				}, () => {
-					console.log("user added to directory");
-					doneworking();
-					location = "home.html";
-				});
+			await user.get("name").put(username).then();
+			await gun.get(user_db + "/" + username).put({user}).then();
+			
+			gun.get(user_db + "/" + username).put(user, () => {
+				console.log("user added to database!");
+				doneworking();
+				location = "home.html"
 			});
 		});
 	});	
