@@ -1,4 +1,3 @@
-let gotten_users = {};
 let templates = {}; // this caches the templates so they don't need to be fetched
 
 /* self explanatory
@@ -14,11 +13,11 @@ function randarr(array) {
 }
 
 async function get_user_info({id, username}) {
-	if (gotten_users[id || username]) return gotten_users[id || username];
 	if (!id && username) {
-		id = (await gun.get(user_db + "/" + username).then()).user["#"].replace("~","");
+		id = (await gun.get(user_db + "/" + username).then())
+		if (!id) return;
+		id = id.user["#"].replace("~","");
 	}
-	if (gotten_users[id]) return gotten_users[id];
 	
 	let user = gun.user(id);
 	if (!username) username = await user.get("name").then();
@@ -37,7 +36,7 @@ async function get_user_info({id, username}) {
 	for (let i in default_info) {
 		info[i] = user_profile[i] || default_info[i];
 	}
-	gotten_users[id] = info;
+
 	return info;
 }
 
@@ -47,7 +46,7 @@ async function get_shit_data(shit_id, recursive, large) {
 	
 	recursive = recursive !== undefined ? recursive : true;
 	
-	let id = shit.author["#"].replace("~","");
+	let id = shit.author["#"].replace("~",""); // so we don't have to clear the database
 	let shit_data = await SEA.verify(shit.signed_data, id);
 	
 	if (!shit_data) return null;
@@ -59,7 +58,8 @@ async function get_shit_data(shit_id, recursive, large) {
 	shit_data.large = large;
 	
 	let user_info = await get_user_info({id});
-	console.log(user_info)
+	
+	if (!user_info) user_info = await get_user_info({id});
 	
 	if (shit_data.reshitting && recursive) shit_data.quote_shit = await get_shit_data("shit/" + shit_data.reshitting, true, large);
 		
@@ -76,6 +76,7 @@ async function create_shit({embedimg, embedvideo, embedurl, reshitting, replying
 	let shit = gun.get("shit/" + uniqueid).put({signed_data});
 	
 	shit.get("author").put(user).get("shitsv" + shitter_version).set(shit);
+	shit.get("authorname").put(await user.get("name").then());
 		
 	if (replying) {
 		let reply_to = await gun.get("shit/" + replying).then();

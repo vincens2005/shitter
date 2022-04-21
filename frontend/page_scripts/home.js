@@ -1,5 +1,7 @@
 let working = false;
 let current_reshit = null;
+let shit_ids = [];
+let re_init = false;
 
 function randomize_placeholder() {
 	document.querySelector("#shit-text").setAttribute("placeholder", randarr([
@@ -58,13 +60,15 @@ async function init() {
 	randomize_placeholder();
 	
 	await prefetchtemplates(["templates/shits.hbs"]);
-	
+
 	let shits = document.querySelector("#shits");
-	let shit_ids = [];
-	await gun.get(shits_db).map().on(async shit => {
-		if (!shit || shit_ids.includes(shit._["#"])) return;
+	
+	shits.innerHTML = "";
+	shit_ids = [];
+	
+	gun.get(shits_db).map()[re_init ? "on" : "once"/* this is one of the dumbest things I've ever done*/](async shit => {
+		if (!shit) return;
 		console.log(shit)
-		shit_ids.push(shit._["#"]);
 		shit = await get_shit_data(shit._["#"]); // the id of the shit
 		if (!shit) return;
 		
@@ -72,8 +76,19 @@ async function init() {
 		let shit_el = await fill_template("templates/shits.hbs", handlebardata);
 		if (!shit_el) return;
 		
+		if (shit_ids.includes(shit.uniqueid)) {
+			document.querySelector("#shit-" + shit.uniqueid).outerHTML = shit_el.outerHTML;
+			return;
+		}
+		
 		shits.prepend(shit_el);
-	}).then();
+		shit_ids.push(shit.uniqueid);
+		
+		if (!re_init) {
+			re_init = true;
+			init(); // god this is stupid
+		}
+	});
 	
 	let shit_input = document.querySelector("#shit-text");
 	shit_input.addEventListener("input", e => {
