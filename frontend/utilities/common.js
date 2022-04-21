@@ -41,7 +41,8 @@ async function get_user_info({id, username}) {
 	return info;
 }
 
-async function get_shit_data(shit, recursive, large) {
+async function get_shit_data(shit_id, recursive, large) {
+	let shit = await gun.get(shit_id).then();
 	if (!shit) return null;
 	
 	recursive = recursive !== undefined ? recursive : true;
@@ -58,8 +59,9 @@ async function get_shit_data(shit, recursive, large) {
 	shit_data.large = large;
 	
 	let user_info = await get_user_info({id});
+	console.log(user_info)
 	
-	if (shit_data.reshitting && recursive) shit_data.quote_shit = await get_shit_data(await gun.get("shit/" + shit_data.reshitting).then(), true, large);
+	if (shit_data.reshitting && recursive) shit_data.quote_shit = await get_shit_data("shit/" + shit_data.reshitting, true, large);
 		
 	return {...shit_data, ...user_info};
 }

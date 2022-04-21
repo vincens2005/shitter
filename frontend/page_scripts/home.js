@@ -62,17 +62,17 @@ async function init() {
 	let shits = document.querySelector("#shits");
 	let shit_ids = [];
 	await gun.get(shits_db).map().on(async shit => {
-		if (!shit) return;
+		if (!shit || shit_ids.includes(shit._["#"])) return;
 		console.log(shit)
-		shit = await get_shit_data(shit);
-		if (!shit || shit_ids.includes(shit.uniqueid)) return;
+		shit_ids.push(shit._["#"]);
+		shit = await get_shit_data(shit._["#"]); // the id of the shit
+		if (!shit) return;
 		
 		handlebardata = {shits: [shit]};
 		let shit_el = await fill_template("templates/shits.hbs", handlebardata);
 		if (!shit_el) return;
 		
 		shits.prepend(shit_el);
-		shit_ids.push(shit.uniqueid);
 	}).then();
 	
 	let shit_input = document.querySelector("#shit-text");
@@ -94,9 +94,10 @@ async function reshit(id) {
 	current_reshit = id;
 	document.querySelector("#shitting-controls").classList.remove("hidden");
 	document.querySelector("#current-reshit").classList.remove("hidden");
-	let shit = await get_shit_data(await gun.get("shit/" + id).then());
+	let shit = await get_shit_data("shit/" + id);
 	document.querySelector("#current-reshit").innerHTML = "Reshitting: " + (shit.text.length > 30 ? shit.text.slice(0, 30) + "..." : shit.text);
 	document.querySelector("#shit-text").setAttribute("placeholder", "Reshit text (can be blank)");
+	document.querySelector("#shit-text").focus();
 }
 
 function set_embed_type(id) {
@@ -106,9 +107,11 @@ function set_embed_type(id) {
 		child.classList.remove("current");
 	}
 	document.querySelector("#media").classList.add("hidden");
+	document.querySelector("#shit-text").focus();
 	if (!id) return;
 	document.querySelector("#" + id).classList.add("current");
 	document.querySelector("#media").classList.remove("hidden");
+	document.querySelector("#embed-url").focus();
 }
 
 window.addEventListener("DOMContentLoaded", init);
