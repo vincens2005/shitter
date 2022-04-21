@@ -19,7 +19,6 @@
 }
 
 .shit {
-	padding: calc(var(--block-spacing-vertical) / 3) calc(var(--block-spacing-horizontal) / 3);
 	margin: 10px;
 }
 
@@ -92,6 +91,10 @@
 	padding: 2vw;
 }
 
+#home-login h3 {
+	margin: 0;
+}
+
 input[type=url] {
 	height: calc(1rem * var(--line-height) / 2 + var(--form-element-spacing-vertical) + var(--border-width) + 6px) !important;
 	padding: 5px !important;
@@ -105,6 +108,10 @@ input[type=url] {
 }
 
 @media (min-width: 900px) {
+	.shit {
+		padding: 20px;
+	}
+	
 	#home-login {
 		grid-template-columns: 10fr 2fr 1fr !important;
 	}
@@ -139,6 +146,10 @@ input[type=url] {
 @media (max-width: 900px) {
 	#home-login {
 		grid-template-columns: 3fr 2fr 1fr !important;
+	}
+	
+	.shit {
+		padding: 15px;
 	}
 	
 	.shits {
