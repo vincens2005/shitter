@@ -82,6 +82,7 @@ async function init() {
 			document.querySelector("#current-reshit").classList.add("hidden");
 			current_reshit = null;
 			document.querySelector("#current-reshit").innerHTML = "";
+			set_embed_type();
 		}
 		else {
 			document.querySelector("#shitting-controls").classList.remove("hidden");
@@ -100,11 +101,14 @@ async function reshit(id) {
 
 function set_embed_type(id) {
 	let children = document.querySelector("#shitting-controls").children;
+	if (id && document.querySelector("#" + id).classList.contains("current")) return set_embed_type();
 	for (let child of children) {
 		child.classList.remove("current");
 	}
+	document.querySelector("#media").classList.add("hidden");
 	if (!id) return;
 	document.querySelector("#" + id).classList.add("current");
+	document.querySelector("#media").classList.remove("hidden");
 }
 
 window.addEventListener("DOMContentLoaded", init);
