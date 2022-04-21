@@ -146,7 +146,8 @@ input[type=url] {
 
 @media (max-width: 900px) {
 	#home-login {
-		grid-template-columns: 3fr 2fr 1fr !important;
+		grid-template-columns: 10fr 4fr 4fr !important;
+		padding: 0;
 	}
 	
 	.shit {
@@ -186,8 +187,12 @@ input[type=url] {
 		height: calc(1rem * var(--line-height) / 2 + var(--form-element-spacing-vertical) + var(--border-width) + 6px);
 	}
 	
-	#shitbox button {
+	#shitbox button, #shitbox a {
 		padding: 3px;
+	}
+	
+	#shitbox h3 {
+		font-size: var(--font-size) / 3;
 	}
 }
 

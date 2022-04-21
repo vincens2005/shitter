@@ -8,8 +8,8 @@ window.addEventListener("DOMContentLoaded", () => {
 			"Censorship is shit, just like your opinions",
 			"Decentralized, like a sewer",
 			"Blogging the size of my penis: micro",
-			"Hop in! The water's fine",
-			"Like if the blue bird took a shit on your winshield",
+			"The shittiest site on the web",
+			"Post your shitty life hacks here",
 			"Cancel culture just got ten times better"
 		],
 		typeSpeed: 85,
