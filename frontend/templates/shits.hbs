@@ -1,6 +1,6 @@
 {{{{def name="shit"}}}}
-	{{#if username}}
-		<article class="shit">
+	{{#if uniqueid}}
+		<article class="shit" id="shit-{{uniqueid}}">
 			<a class="shit-user" href="profile.html?user={{username}}">
 				<img src="{{profile_pic}}" class="pfp" />
 				<span>
@@ -13,7 +13,11 @@
 				</span>
 			</a>
 			<div>
-				{{{text}}}
+				{{#if large}}
+					{{{text}}}
+				{{else}}
+					{{{short_text}}}
+				{{/if}}
 				{{#if embedimg}}
 					<img class="embed" src="{{embedurl}}" />
 				{{/if}}
@@ -27,6 +31,12 @@
 				{{#if quote_shit}}
 					{{> shit quote_shit}}
 				{{/if}}
+				
+				<div class="grid shit_controls">
+					<span class="material-symbols-outlined shit_control" onclick="reshit('{{uniqueid}}')">
+						repeat
+					</span>	
+				</div>
 			</div>
 		</article>
 	{{/if}}

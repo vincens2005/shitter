@@ -41,17 +41,25 @@ async function get_user_info({id, username}) {
 	return info;
 }
 
-async function get_shit_data(shit) {
+async function get_shit_data(shit, recursive, large) {
 	if (!shit) return null;
+	
+	recursive = recursive !== undefined ? recursive : true;
 	
 	let id = shit.author["#"].replace("~","");
 	let shit_data = await SEA.verify(shit.signed_data, id);
 	
 	if (!shit_data) return null;
 	
+	shit_data.uniqueid = String(shit_data.uniqueid);
+	shit_data.text = htmltotext(shit_data.text);
+	shit_data.short_text = (shit_data.text.length > 200 ? shit_data.text.slice(0, 200) + "..." : shit_data.text).autoLink({target: "_blank"});
+	shit_data.text = shit_data.text.autoLink({target: "_blank"});
+	shit_data.large = large;
+	
 	let user_info = await get_user_info({id});
 	
-	if (shit_data.reshitting) shit_data.quote_shit = await get_shit_data(await gun.get("shit/" + shit_data.reshitting).then());
+	if (shit_data.reshitting && recursive) shit_data.quote_shit = await get_shit_data(await gun.get("shit/" + shit_data.reshitting).then(), true, large);
 		
 	return {...shit_data, ...user_info};
 }
@@ -66,7 +74,7 @@ async function create_shit({embedimg, embedvideo, embedurl, reshitting, replying
 	let shit = gun.get("shit/" + uniqueid).put({signed_data});
 	
 	shit.get("author").put(user).get("shitsv" + shitter_version).set(shit);
-	
+		
 	if (replying) {
 		let reply_to = await gun.get("shit/" + replying).then();
 		reply_to.get("replies").set(shit);
@@ -74,6 +82,7 @@ async function create_shit({embedimg, embedvideo, embedurl, reshitting, replying
 	}
 	gun.get(shits_db).set(shit);	
 }
+
 
 /** automatically fills out handlebars template
  * @param {String} template_url - the url to the handlebars template to use

@@ -41,6 +41,25 @@
 	margin-bottom: 50px;
 }
 
+ #shitting-controls {
+	padding: 10px;
+	padding-bottom: 0;
+	padding-left: 0;
+ }
+
+.shit_controls {
+	margin-top: 5px;
+}
+
+.shit_control {
+	cursor: pointer;
+	transition: 0.2s;
+}
+
+.shit_control:hover, .shit_control.current {
+	color: var(--contrast-hover)
+}
+
 #shitbox input, #shitbox button, #shitbox form {
 	margin: 0;
 }
@@ -73,6 +92,17 @@
 	padding: 2vw;
 }
 
+input[type=url] {
+	height: calc(1rem * var(--line-height) / 2 + var(--form-element-spacing-vertical) + var(--border-width) + 6px) !important;
+	padding: 5px !important;
+}
+
+.embed {
+	display: block;
+	margin: 10px 0;
+	border-radius: var(--border-radius);
+	max-width: min(600px, 90%);
+}
 
 @media (min-width: 900px) {
 	#home-login {
@@ -121,7 +151,7 @@
 	
 	#shitbox {
 		position: fixed;
-		bottom: 0;
+		bottom: -10px;
 		left: 50%;
 		transform: translateX(-50%);
 		width: 95vw;
@@ -131,6 +161,7 @@
 	#shitbox > article {
 		margin: 0;
 		padding: 5px;
+		padding-bottom: 15px;
 	}
 	
 	#shitbox .grid {

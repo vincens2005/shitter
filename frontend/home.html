@@ -15,6 +15,7 @@
 		<script src="utilities/gun.js"></script>
 		<script src="utilities/common.js"></script>
 		<link rel="stylesheet" href="style.css"/>
+		<link rel="stylesheet" href="https://fonts.sandbox.google.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" />
 	</head>
 	<body>
 		<div class="grid mainlayout">
@@ -35,6 +36,20 @@
 								<button type="submit" role="button" id="shitbutton">
 									Shit
 								</button>
+							</div>
+							<div id="shitting-controls" class="hidden">
+								<span class="material-symbols-outlined shit_control" id="embedimg" onclick="set_embed_type('embedimg')">
+									image
+								</span>
+								<span class="material-symbols-outlined shit_control" id="embedvideo" onclick="set_embed_type('embedvideo')">
+									movie
+								</span>
+								<div>
+									<input id="embed-url" type="url" autocomplete="off" placeholder="Media URL">
+								</div>
+								<div id="current-reshit" class="hidden">
+									reshitting:
+								</div>
 							</div>
 						</form>
 					</article>
