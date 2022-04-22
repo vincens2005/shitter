@@ -1,4 +1,3 @@
-// TODO: yeah do this
-user = await gun.get("shitter_users/" + username);
+// TODO: profile page
+user = await get_user_info(id)
 
-realuser = await gun.user(user.id).then()

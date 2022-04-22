@@ -40,16 +40,19 @@ async function get_user_info({id, username}) {
 	return info;
 }
 
-async function get_shit_data(shit_id, recursive, large) {
+async function get_shit_data(shit_id, recursive, large, i) {
+	if (!i) i = 1;
+	i++;
+	if (i >= 20) return null; // kill after 20 tries
 	let shit = await gun.get(shit_id).then();
-	if (!shit) return null;
+	if (!shit) return await get_shit_data(shit_id, recursive, large, i);
 	
 	recursive = recursive !== undefined ? recursive : true;
 	
 	let id = shit.author["#"].replace("~",""); // so we don't have to clear the database
 	let shit_data = await SEA.verify(shit.signed_data, id);
-	
-	if (!shit_data) return null;
+
+	if (!shit_data) return await get_shit_data(shit_id, recursive, large, i);
 	
 	shit_data.uniqueid = String(shit_data.uniqueid);
 	shit_data.text = htmltotext(shit_data.text);
@@ -59,7 +62,7 @@ async function get_shit_data(shit_id, recursive, large) {
 	
 	let user_info = await get_user_info({id});
 	
-	if (!user_info) user_info = await get_user_info({id});
+	if (!user_info) return await get_shit_data(shit_id, recursive, large, i);
 	
 	if (shit_data.reshitting && recursive) shit_data.quote_shit = await get_shit_data("shit/" + shit_data.reshitting, true, large);
 		
@@ -79,7 +82,7 @@ async function create_shit({embedimg, embedvideo, embedurl, reshitting, replying
 	shit.get("authorname").put(await user.get("name").then());
 		
 	if (replying) {
-		let reply_to = await gun.get("shit/" + replying).then();
+		let reply_to = gun.get("shit/" + replying);
 		reply_to.get("replies").set(shit);
 		return;
 	}
@@ -148,3 +151,15 @@ window.addEventListener("DOMContentLoaded", () => {
 		return;
 	});
 });
+
+async function init_header() {
+	document.querySelector("#navigation").innerHTML = "";
+	await fill_template("templates/nav.hbs", {
+		links: [
+			{
+				url: "home.html",
+				title: "home"
+			}
+		]
+	}, "#navigation");
+}

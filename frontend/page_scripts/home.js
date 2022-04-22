@@ -43,6 +43,7 @@ async function shit() {
 	document.querySelector("#shit-text").value = "";
 	document.querySelector("#embed-url").value = "";
 	set_embed_type();
+	current_reshit = null;
 	document.querySelector("#shitting-controls").classList.add("hidden");
 	
 	randomize_placeholder();
@@ -59,7 +60,7 @@ async function init() {
 	}
 	randomize_placeholder();
 	
-	await prefetchtemplates(["templates/shits.hbs"]);
+	if (!re_init) await prefetchtemplates(["templates/shits.hbs"]);
 
 	let shits = document.querySelector("#shits");
 	
@@ -90,43 +91,42 @@ async function init() {
 		}
 	});
 	
+	if (re_init) { // run this the second time
+		// check for reshit in URL query string
+		let url = new URL(location);
+		let reshit_id = url.searchParams.get("reshit");
+		if (reshit_id) {
+			setTimeout(async () => {
+				await reshit(reshit_id);
+				url.searchParams.delete("reshit");
+				history.pushState({}, "", url);
+			}, 500)
+		}
+		return;
+	}
+	
 	let shit_input = document.querySelector("#shit-text");
-	shit_input.addEventListener("input", e => {
-		if (!shit_input.value) {
-			document.querySelector("#shitting-controls").classList.add("hidden");
-			document.querySelector("#current-reshit").classList.add("hidden");
-			current_reshit = null;
-			document.querySelector("#current-reshit").innerHTML = "";
-			set_embed_type();
-		}
-		else {
-			document.querySelector("#shitting-controls").classList.remove("hidden");
-		}
-	});
+	setup_shit_input(shit_input);
+	init_header();
 }
 
 async function reshit(id) {
 	current_reshit = id;
 	document.querySelector("#shitting-controls").classList.remove("hidden");
 	document.querySelector("#current-reshit").classList.remove("hidden");
-	let shit = await get_shit_data("shit/" + id);
+	let shit = await get_shit_data("shit/" + id, false);
+	
+	if (!shit) {
+		document.querySelector("#current-reshit").classList.add("hidden");
+		current_reshit = null;
+		document.querySelector("#current-reshit").innerHTML = "";
+		return set_embed_type();
+	} 
+	
+	console.log(shit)
 	document.querySelector("#current-reshit").innerHTML = "Reshitting: " + (shit.text.length > 30 ? shit.text.slice(0, 30) + "..." : shit.text);
 	document.querySelector("#shit-text").setAttribute("placeholder", "Reshit text (can be blank)");
 	document.querySelector("#shit-text").focus();
-}
-
-function set_embed_type(id) {
-	let children = document.querySelector("#shitting-controls").children;
-	if (id && document.querySelector("#" + id).classList.contains("current")) return set_embed_type();
-	for (let child of children) {
-		child.classList.remove("current");
-	}
-	document.querySelector("#media").classList.add("hidden");
-	document.querySelector("#shit-text").focus();
-	if (!id) return;
-	document.querySelector("#" + id).classList.add("current");
-	document.querySelector("#media").classList.remove("hidden");
-	document.querySelector("#embed-url").focus();
 }
 
 window.addEventListener("DOMContentLoaded", init);

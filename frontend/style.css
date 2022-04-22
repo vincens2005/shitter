@@ -1,3 +1,7 @@
+:root {
+	--small-input-size: calc(1rem * var(--line-height) / 2 + var(--form-element-spacing-vertical) + var(--border-width) + 6px);
+}
+
 * {
 	scrollbar-width: thin;
 }
@@ -18,8 +22,26 @@
 	position: sticky;	
 }
 
-.shit {
-	margin: 10px;
+.shit:not([data-shitless]) {
+	transition: 0.2s;
+	cursor: pointer;
+}
+
+#shitbox.reply, .shit {
+		margin: 10px;
+}
+
+#shitbox.reply input {
+	height: var(--small-input-size);
+	padding: 8px;
+}
+
+#shitbox.reply > #shitform {
+	margin: 0;
+}
+
+.shit:not([data-shitless]):hover {
+	background: var(--muted-border-color);
 }
 
 .shit small {
@@ -53,6 +75,7 @@
 .shit_control {
 	cursor: pointer;
 	transition: 0.2s;
+	max-width: 40px;
 }
 
 .shit_control:hover, .shit_control.current {
@@ -72,6 +95,11 @@
 	align-items: center;
 	justify-content: flex-start;
 	margin-bottom: 5px;
+	border-radius: var(--border-radius);
+}
+
+.shit-user:hover {
+	background: var(--progress-background-color);
 }
 
 .pfp {
@@ -79,7 +107,6 @@
 	width: 55px;
 	height: 55px;
 	border-radius: 100%;
-	float: left;
 }
 
 .shit-user span {
@@ -105,7 +132,7 @@ input[type=url] {
 	margin: 10px 0;
 	border-radius: var(--border-radius);
 	max-width: min(600px, 90%);
-	max-height: 500px;
+	max-height: 350px;
 }
 
 @media (min-width: 900px) {
@@ -184,7 +211,7 @@ input[type=url] {
 	}
 	
 	#shitbox input {
-		height: calc(1rem * var(--line-height) / 2 + var(--form-element-spacing-vertical) + var(--border-width) + 6px);
+		height: var(--small-input-size);
 	}
 	
 	#shitbox button, #shitbox a {

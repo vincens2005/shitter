@@ -2,7 +2,7 @@
 <html>
 	<head>
 		<title>
-			Shitter - Home
+			Shitter - View Shit
 		</title>
 		<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@picocss/pico@latest/css/pico.min.css">
 		<meta name="viewport" content="width=device-width, initial-scale=1, height=device-height" />
@@ -11,7 +11,7 @@
 		<script src="https://cdn.jsdelivr.net/npm/gun/sea.min.js"></script>
 		<script src="https://cdn.jsdelivr.net/npm/gun/lib/then.min.js"></script>
 		<script src="https://cdn.jsdelivr.net/npm/autolink-js@1.0.2/autolink-min.js"></script>
-		<script src="page_scripts/home.js"></script>
+		<script src="page_scripts/shit.js"></script>
 		<script src="/is_dev.js"></script>
 		<script src="utilities/gun.js"></script>
 		<script src="utilities/common.js"></script>
@@ -25,13 +25,13 @@
 				<!-- links will go here. see nav.hbs -->
 			</article>
 			<div class="shits">
-				<div id="shitbox">
+				<div id="shitbox" class="reply hidden">
 					<article id="shitform">
-						<form onsubmit="shit(); return false;">
+						<form onsubmit="reply(); return false;">
 							<div class="grid">
-								<input type="text" autocomplete="off" placeholder="Scream into the void" id="shit-text">
+								<input type="text" autocomplete="off" placeholder="Reply to this shit" id="shit-text">
 								<button type="submit" role="button" id="shitbutton">
-									Shit
+									Reply
 								</button>
 							</div>
 							<div id="shitting-controls" class="hidden">
@@ -44,28 +44,19 @@
 								<div id="media" class="hidden">
 									<input id="embed-url" type="url" autocomplete="off" placeholder="Media URL">
 								</div>
-								<div id="current-reshit" class="hidden">
-									reshitting:
-								</div>
+								<span id="current-reshit"></span>
 							</div>
 						</form>
 					</article>
-					<article id="loginthing" class="hidden">
-						<div class="grid" id="home-login">
-							<h3>
-								Start shitting today!
-							</h3>
-							<a role="button" href="signup.html">
-								Sign up
-							</a>
-							<a href="login.html">
-								Log in
-							</a>
-						</div>
-					</article>
 				</div>
-				<div id="shits">
-					<!-- shits will go here -->
+				<div id="main-shit">
+					<!-- the shit will go here -->
+				</div>
+				<div id="reply_cont" class="hidden">
+					replies
+					<div id="replies">
+						<!-- replies go here -->
+					</div>
 				</div>
 			</div>
 		</div>

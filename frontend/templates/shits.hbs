@@ -1,44 +1,59 @@
 {{{{def name="shit"}}}}
 	{{#if uniqueid}}
-		<article class="shit" id="shit-{{uniqueid}}">
-			<a class="shit-user" href="profile.html?user={{username}}">
-				<img src="{{profile_pic}}" class="pfp" />
-				<span>
-					<div>
-						{{display_name}}
-					</div>
-					<small>
-						@{{username}}
-					</small>
-				</span>
-			</a>
-			<div>
-				{{#if large}}
-					{{{text}}}
+		
+		
+		<article class="shit" id="shit-{{uniqueid}}" 
+			{{#if username}}
+				onclick="event.stopPropagation();location='shit.html?shit={{uniqueid}}'"
 				{{else}}
-					{{{short_text}}}
+				data-shitless="true"
+			{{/if}}>
+			
+				{{#if username}}
+					<a class="shit-user" href="profile.html?user={{username}}">
+						<img src="{{profile_pic}}" class="pfp" />
+						<span>
+							<div>
+								{{display_name}}
+							</div>
+							<small>
+								@{{username}}
+							</small>
+						</span>
+					</a>
 				{{/if}}
-				{{#if embedimg}}
-					<img class="embed" src="{{embedurl}}" />
-				{{/if}}
-				{{#if embedvideo}}
-					<video class="embed" controls>
-						HTML vido is unsupported? wtf is wrong with you, update your browser
-						<source src="{{embedurl}}">
-					</video>
-				{{/if}}
-				
-				{{#if quote_shit}}
-					{{> shit quote_shit}}
-				{{/if}}
-				
-				<div class="grid shit_controls">
-					<span class="material-symbols-outlined shit_control" onclick="reshit('{{uniqueid}}')">
-						repeat
-					</span>	
+			
+				<div>
+					{{#if large}}
+						{{{text}}}
+					{{else}}
+						{{{short_text}}}
+					{{/if}}
+					{{#if embedimg}}
+						<img class="embed" src="{{embedurl}}" />
+					{{/if}}
+					{{#if embedvideo}}
+						<video class="embed" controls>
+							HTML vido is unsupported? wtf is wrong with you, update your browser
+							<source src="{{embedurl}}">
+						</video>
+					{{/if}}
+					
+					{{#if quote_shit}}
+						{{> shit quote_shit}}
+					{{/if}}
+					
+					{{#if username}}
+						<div class="grid shit_controls">
+							<span class="material-symbols-outlined shit_control" onclick="event.stopPropagation();reshit('{{uniqueid}}')">
+								repeat
+							</span>	
+						</div>
+					{{/if}}
 				</div>
-			</div>
+
 		</article>
+		
 	{{/if}}
 {{{{/def}}}}
 

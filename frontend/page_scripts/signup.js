@@ -32,11 +32,7 @@ async function signup() {
 			await user.get("name").put(username).then();
 			await gun.get(user_db + "/" + username).put({user}).then();
 			
-			gun.get(user_db + "/" + username).put(user, () => {
-				console.log("user added to database!");
-				doneworking();
-				location = "home.html"
-			});
+			location = "home.html";
 		});
 	});	
 
