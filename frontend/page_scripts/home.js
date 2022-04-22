@@ -102,6 +102,14 @@ async function init() {
 				history.pushState({}, "", url);
 			}, 500)
 		}
+		
+		if (user.is) {
+			let user_data = await get_user_info({id: user.is.pub});
+			let pfp = document.createElement("IMG");
+			pfp.classList.add("pfp");
+			pfp.src = user_data.profile_pic;
+			document.querySelector("#shitform_grid").prepend(pfp);
+		}
 		return;
 	}
 	

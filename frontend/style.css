@@ -1,5 +1,6 @@
 :root {
 	--small-input-size: calc(1rem * var(--line-height) / 2 + var(--form-element-spacing-vertical) + var(--border-width) + 6px);
+	--input-size: calc(1rem * var(--line-height) + var(--form-element-spacing-vertical) * 2 + var(--border-width) * 2);
 }
 
 * {
@@ -136,6 +137,17 @@ input[type=url] {
 }
 
 @media (min-width: 900px) {
+	#shitbox .grid {
+		grid-template-columns: 1fr 12fr;
+		align-items: center;
+		gap: 5px;
+	}
+	
+	#shitbox .grid .pfp {
+		width: calc(var(--input-size) - 10px);
+		height: calc(var(--input-size) - 10px);
+	}
+	
 	.shit {
 		padding: 20px;
 	}
@@ -168,6 +180,10 @@ input[type=url] {
 	
 	#shitbox > article {
 		padding: 6px;
+	}
+	
+	#shitbox.reply .grid {
+		grid-template-columns: auto;
 	}
 }
 
@@ -205,9 +221,14 @@ input[type=url] {
 	}
 	
 	#shitbox .grid {
-		grid-template-columns: 3fr 1fr;
+		grid-template-columns: 1fr 12fr 4fr;
 		margin: 3px;
 		gap: 8px;
+	}
+	
+	#shitbox .grid .pfp {
+		height: var(--small-input-size);
+		width: var(--small-input-size);
 	}
 	
 	#shitbox input {
