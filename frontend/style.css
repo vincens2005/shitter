@@ -208,7 +208,7 @@ input[type=url] {
 	
 	#shitbox {
 		position: fixed;
-		bottom: -10px;
+		bottom: -18px;
 		left: 50%;
 		transform: translateX(-50%);
 		width: 95vw;
@@ -219,6 +219,12 @@ input[type=url] {
 		margin: 0;
 		padding: 5px;
 		padding-bottom: 15px;
+	}
+	
+	#shitbox .grid {
+		grid-template-columns: 6fr 2fr;
+		margin: 3px;
+		gap: 8px;
 	}
 	
 	#shitform_grid {

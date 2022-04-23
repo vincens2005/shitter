@@ -109,7 +109,6 @@ async function init() {
 		if (user.is) {
 			let user_data = await get_user_info({id: user.is.pub});
 			document.querySelector("#your_pfp").src = user_data.profile_pic;
-			document.querySelector("#shitform_grid").prepend(pfp);
 		}
 		return;
 	}
