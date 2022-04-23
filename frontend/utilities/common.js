@@ -12,9 +12,10 @@ function randarr(array) {
 	return array[randint(0, array.length)];
 }
 
-async function get_user_info({id, username, i}) {
+async function get_user_info({id, username, i, recursive}) {
 	if (!i) i = 1;
 	i++;
+	recursive = recursive !== undefined ? recursive : true;
 	if (!id && username) {
 		id = (await gun.get(user_db + "/" + username).then())
 		if (!id) return;
@@ -32,7 +33,7 @@ async function get_user_info({id, username, i}) {
 	}
 	
 	if (!user_profile) {
-		if (i > 20) return default_info;
+		if (i > 20 || !recursive) return default_info;
 		return await get_user_info({id, i});
 	}
 	

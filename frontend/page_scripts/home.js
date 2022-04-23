@@ -67,6 +67,8 @@ async function init() {
 	shits.innerHTML = "";
 	shit_ids = [];
 	
+	console.log("initting gun");
+	
 	gun.get(shits_db).map()[re_init ? "on" : "once"/* this is one of the dumbest things I've ever done*/](async shit => {
 		if (!shit) return;
 		console.log(shit)
@@ -93,6 +95,7 @@ async function init() {
 	
 	if (re_init) { // run this the second time
 		// check for reshit in URL query string
+		console.log("reinit stuff");
 		let url = new URL(location);
 		let reshit_id = url.searchParams.get("reshit");
 		if (reshit_id) {

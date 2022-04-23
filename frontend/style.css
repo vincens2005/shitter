@@ -137,7 +137,7 @@ input[type=url] {
 }
 
 @media (min-width: 900px) {
-	#shitbox .grid {
+	#shitform_grid {
 		grid-template-columns: 1fr 12fr;
 		align-items: center;
 		gap: 5px;
@@ -220,7 +220,7 @@ input[type=url] {
 		padding-bottom: 15px;
 	}
 	
-	#shitbox .grid {
+	#shitform_grid {
 		grid-template-columns: 1fr 12fr 4fr;
 		margin: 3px;
 		gap: 8px;
