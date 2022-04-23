@@ -19,18 +19,26 @@ async function init() {
 	
 	if (!shit_data || !shit_data.username) return noshit();
 		
-	
+	console.log(shit_data);
 	
 	document.querySelector("#main-shit").innerHTML = "";
 	fill_template("templates/shits.hbs", {shits: [shit_data]}, "#main-shit");
 	
 	document.title = `Shit by ${shit_data.username} - Shitter`;
 	
+	if (shit_data.replying) {
+		let reply = await get_shit_data("shit/" + shit_data.replying);
+		console.log(reply)
+		let shit_el = await fill_template("templates/shits.hbs", {shits: [reply]});
+		document.querySelector("#shit-" + shit_id).prepend(shit_el);
+	}
+	
 	gun.get("shit/" + shit_id).get("replies").map().on(async shit => {
 		if (!shit) return;
 		console.log(shit)
-		shit = await get_shit_data(shit._["#"]);
+		shit = await get_shit_data(shit._["#"], false, false, 19);
 		handlebardata = {shits: [shit]};
+		console.log(shit)
 		let shit_el = await fill_template("templates/shits.hbs", handlebardata);
 		if (!shit_el) return;
 		

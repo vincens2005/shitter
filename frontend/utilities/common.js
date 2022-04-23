@@ -12,10 +12,7 @@ function randarr(array) {
 	return array[randint(0, array.length)];
 }
 
-async function get_user_info({id, username, i, recursive}) {
-	if (!i) i = 1;
-	i++;
-	recursive = recursive !== undefined ? recursive : true;
+async function get_user_info({id, username}) {
 	if (!id && username) {
 		id = (await gun.get(user_db + "/" + username).then())
 		if (!id) return;
@@ -32,11 +29,7 @@ async function get_user_info({id, username, i, recursive}) {
 		bio: ""
 	}
 	
-	if (!user_profile) {
-		if (i > 20 || !recursive) return default_info;
-		return await get_user_info({id, i});
-	}
-	
+	if (!user_profile) return default_info;	
 	
 	let info = {};
 	
@@ -52,6 +45,7 @@ async function get_shit_data(shit_id, recursive, large, i) {
 	i++;
 	if (i > 20) return null; // kill after 20 tries
 	let shit = await gun.get(shit_id).then();
+
 	if (!shit) return await get_shit_data(shit_id, recursive, large, i);
 	
 	recursive = recursive !== undefined ? recursive : true;
@@ -66,6 +60,7 @@ async function get_shit_data(shit_id, recursive, large, i) {
 	shit_data.short_text = (shit_data.text.length > 200 ? shit_data.text.slice(0, 200) + "..." : shit_data.text).autoLink({target: "_blank"});
 	shit_data.text = shit_data.text.autoLink({target: "_blank"});
 	shit_data.large = large;
+	
 	
 	let user_info = await get_user_info({id});
 	
