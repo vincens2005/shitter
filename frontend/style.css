@@ -138,14 +138,15 @@ input[type=url] {
 
 @media (min-width: 900px) {
 	#shitform_grid {
-		grid-template-columns: 1fr 12fr;
+		grid-template-columns: 1fr 18fr;
 		align-items: center;
-		gap: 5px;
+		gap: 10px;
 	}
 	
 	#shitbox .grid .pfp {
-		width: calc(var(--input-size) - 10px);
-		height: calc(var(--input-size) - 10px);
+		width: 100%;
+		height: auto;
+		overflow: visible;
 	}
 	
 	.shit {
