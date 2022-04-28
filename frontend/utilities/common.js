@@ -30,6 +30,7 @@ async function get_user_info({id, username, retry, i}) {
 	let u = gun.user(id);
 	if (!username) username = await u.get("name").then();
 	let user_profile = await u.get("profile_info").then();
+	
 	let default_info = {
 		profile_pic: "images/pfp.jpg",
 		username,

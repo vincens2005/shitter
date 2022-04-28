@@ -33,4 +33,25 @@ function noprofile() {
 	document.querySelector("#profile").innerHTML = "<article>profile not found</article>";
 }
 
+async function editprofile() {
+	if (!profile.is_me) return;
+	let edit_el = await fill_template("templates/edit_profile.hbs", profile);
+	document.querySelector("#profile").innerHTML = "";
+	document.querySelector("#profile").appendChild(edit_el);
+	
+	document.querySelector("#pfp_input").addEventListener("input", e => {
+		document.querySelector("#pfp").src = e.target.value || "images/pfp.jpg";
+	});
+}
+
+async function save_profile() {
+	if (!user.is) return;
+	await user.get("profile_info").put({
+		profile_pic: document.querySelector("#pfp_input").value || "images/pfp.jpg",
+		display_name: document.querySelector("#display_name").value || profile.username,
+		bio: document.querySelector("#bio").value || profile.username,
+	}).then();
+	init();
+}
+
 window.addEventListener("DOMContentLoaded", init);
