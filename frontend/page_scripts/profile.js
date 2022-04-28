@@ -15,7 +15,7 @@ async function init() {
 	
 	console.log(id)
 	
-	if(!id) return noprofile();
+	if(!id && !username) return noprofile();
 	
 	profile = await get_user_info({id, username, retry: true});
 	console.log(profile)
