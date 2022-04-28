@@ -41,6 +41,10 @@
 	margin: 2px !important;
 }
 
+.profile p {
+	white-space: pre-wrap;
+}
+
 #shitbox.reply > #shitform {
 	margin: 0;
 }

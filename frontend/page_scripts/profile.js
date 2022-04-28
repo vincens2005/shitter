@@ -20,6 +20,8 @@ async function init() {
 	profile = await get_user_info({id, username, retry: true});
 	console.log(profile)
 	
+	profile.linked_bio = profile.bio.autoLink({target: "_blank"});
+	
 	if (!profile) {
 		console.log("no profile????");
 		return noprofile();
@@ -49,7 +51,7 @@ async function save_profile() {
 	await user.get("profile_info").put({
 		profile_pic: document.querySelector("#pfp_input").value || "images/pfp.jpg",
 		display_name: document.querySelector("#display_name").value || profile.username,
-		bio: document.querySelector("#bio").value || profile.username,
+		bio: document.querySelector("#bio").value || "",
 	}).then();
 	init();
 }

@@ -172,6 +172,10 @@ async function init_header() {
 			{
 				url: "home.html",
 				title: "home"
+			},
+			{
+				url: "profile.html",
+				title: "your profile"
 			}
 		]
 	}, "#navigation");
