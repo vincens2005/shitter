@@ -32,9 +32,13 @@
 		margin: 10px;
 }
 
-#shitbox.reply input {
-	height: var(--small-input-size);
-	padding: 8px;
+#shitbox.reply input, .profile input {
+	height: var(--small-input-size) !important;
+	padding: 8px !important;
+}
+
+.profile input {
+	margin: 2px !important;
 }
 
 #shitbox.reply > #shitform {
@@ -99,9 +103,14 @@
 	border-radius: var(--border-radius);
 }
 
-.shit-user:hover {
+.shit-user:not(.profile):hover {
 	background: var(--progress-background-color);
 }
+
+.shit-user h5 {
+	margin: 0;
+}
+
 
 .pfp {
 	object-fit: cover;
@@ -189,6 +198,7 @@ input[type=url] {
 }
 
 @media (max-width: 900px) {
+	
 	#home-login {
 		grid-template-columns: 10fr 4fr 4fr !important;
 		padding: 0;

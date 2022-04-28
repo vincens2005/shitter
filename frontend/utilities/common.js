@@ -12,21 +12,31 @@ function randarr(array) {
 	return array[randint(0, array.length)];
 }
 
-async function get_user_info({id, username}) {
+async function get_user_info({id, username, retry, i}) {
 	if (!id && username) {
 		id = (await gun.get(user_db + "/" + username).then())
-		if (!id) return;
+		if (!id) {
+			if (retry && (!i || i < 20)) {
+				i = i ? ++i : 1;
+				return await get_user_info({id, username, retry, i});
+			}
+			return;
+		}
 		id = id.user["#"].replace("~","");
 	}
 	
-	let user = gun.user(id);
-	if (!username) username = await user.get("name").then();
-	let user_profile = await user.get("profile_info").then();
+	let is_me = user.is && user.is.pub == id;
+	
+	let u = gun.user(id);
+	if (!username) username = await u.get("name").then();
+	let user_profile = await u.get("profile_info").then();
 	let default_info = {
 		profile_pic: "images/pfp.jpg",
 		username,
+		safe_username: encodeURIComponent(username),
 		display_name: username,
-		bio: ""
+		bio: "",
+		is_me
 	}
 	
 	if (!user_profile) return default_info;	

@@ -1,0 +1,19 @@
+<article class="profile">
+	<div class="shit-user profile">
+		<img src="{{profile_pic}}" class="pfp" id="pfp" />
+		<span>
+			<h5>
+				<input placeholder="display name" autocomplete="off" value="{{display_name}}" id="display_name">
+			</h5>
+			<small>
+				<input placeholder="profile image URL" autocomplete="off" value="{{profile_pic}}" id="pfp_input">
+			</small>
+		</span>
+	</div>
+	<div class="grid">
+		<textarea autocomplete="off" placeholder="about me" id="bio">{{bio}}</textarea>
+		<button onclick="save_profile()">
+			Save
+		</button>
+	</div>
+</article>

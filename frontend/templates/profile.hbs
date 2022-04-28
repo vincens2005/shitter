@@ -1,0 +1,23 @@
+<article class="profile">
+	<div class="shit-user profile">
+		<img src="{{profile_pic}}" class="pfp" />
+		<span>
+			<h5>
+				{{display_name}}
+			</h5>
+			<small>
+				@{{username}}
+			</small>
+		</span>
+	</div>
+	<div class="grid">
+		<p>
+			{{bio}}
+		</p>
+		{{#if is_me}}
+			<button onclick="edit_profile()">
+				Edit
+			</button>
+		{{/if}}
+	</div>
+</article>
